@@ -33,6 +33,13 @@ gem 'httparty'
 
 gem 'foundation-rails'
 
+group :development, :test do
+	gem 'rspec-rails'
+	gem 'capybara'
+	gem 'pry'
+	gem 'launchy'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
