@@ -38,6 +38,7 @@ group :development, :test do
 	gem 'capybara'
 	gem 'pry'
 	gem 'launchy'
+	gem 'selenium-webdriver'
 end
 
 group :doc do
