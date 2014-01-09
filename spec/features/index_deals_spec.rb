@@ -38,15 +38,15 @@ feature "View deal index" do
       # loop through all deals to make sure country = USA
       page.all(:css, 'img').each do |el|
         el.click
-        within(:class, 'reveal-modal open') do
+        within(:xpath, '//*[@id="country"]') do
           page.should have_content('USA')
         end
       end
     end
-    scenario "shows you 4 or above star hotel deals" do
+    scenario "shows you 5 or above star hotel deals" do
       visit root_path
 
-      find("option[value='4']").click
+      find("option[value='5']").click
       click_button('filter')
 
       # loop through all deals to make sure hotel rating is 4 or higher
