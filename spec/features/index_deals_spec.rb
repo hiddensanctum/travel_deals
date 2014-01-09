@@ -37,8 +37,9 @@ feature "View deal index" do
       click_button('filter')
 
       # loop through all deals to make sure country = USA
-      page.all(:css, '#country').each do |el|
-        el.should have_content('USA')
+      page.all(:css, 'img').each do |el|
+        el.click
+        page.should have_content('USA')
       end
     end
     scenario "shows you 4 or above star hotel deals", :js => true do
@@ -48,21 +49,26 @@ feature "View deal index" do
       click_button('filter')
 
       # loop through all deals to make sure hotel rating is 4 or higher
-      page.all(:css, '#star').each do |el|
-        puts el.value
-        el.should have_no_content('4')
+      page.all(:css, 'img').each do |el|
+        el.click
+        page.should have_no_content('3.5')
+        page.should have_no_content('3.0')
+        page.should have_no_content('2.5')
+        page.should have_no_content('2.0')
+        page.should have_no_content('1.5')
+        page.should have_no_content('1.0')
       end
     end
-    scenario "shows you only deals that are under 100 dollars", :js => true do
+    scenario "shows you only deals that are $100 or under", :js => true do
       visit root_path
 
       fill_in('max-price', :with => '100')
       click_button('filter')
 
       # loop through all deals to make sure price is 100 or lower
-      page.all(:css, '#price').each do |el|
-        puts el.value
-        el.should have_content('4')
+      page.all(:css, 'img').each do |el|
+        el.click
+        page.should have_no_content('200')
       end
     end
   end
