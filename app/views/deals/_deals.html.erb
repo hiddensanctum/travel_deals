@@ -1,0 +1,106 @@
+<% if @deals.length == 0 %>
+	<h2>No Deals Found</h2>
+<% end %>
+
+<ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6">
+	<% @deals.each do |deal| %>
+		<li>
+			<a href="#" class="thumb" data-reveal-id="<%= deal['hotelId'] %>"><%= image_tag(deal['imageUrl']) %></a>
+			<% if deal['guestRating'] == 5 %>
+				<%= image_tag("urating5_0.png") %>
+			<% elsif deal['guestRating'] >= 4.5 %>
+				<%= image_tag("urating4_5.png") %>
+			<% elsif deal['guestRating'] >= 4.0 %>
+				<%= image_tag("urating4_0.png") %>
+			<% elsif deal['guestRating'] >= 3.5 %>
+				<%= image_tag("urating3_5.png") %>
+			<% elsif deal['guestRating'] >= 3.0 %>
+				<%= image_tag("urating3_0.png") %>
+			<% elsif deal['guestRating'] >= 2.5 %>
+				<%= image_tag("urating2_5.png") %>
+			<% elsif deal['guestRating'] >= 2.0 %>
+				<%= image_tag("urating2_0.png") %>
+			<% elsif deal['guestRating'] >= 1.5 %>
+				<%= image_tag("urating1_5.png") %>
+			<% elsif deal['guestRating'] >= 1.0 %>
+				<%= image_tag("urating1_0.png") %>
+			<% elsif deal['guestRating'] >= 0.5 %>
+				<%= image_tag("urating0_5.png") %>
+			<% else %>
+				<%= image_tag("urating0_0.png") %>
+			<% end %>
+			<h5><%= deal['city'] %> <%= deal['province'] %></h5>
+			<h5>For <%= deal['lengthofStay'] %> days</h5>
+			<h6>Price: <%= deal['baseRate'] %></h6>
+		</li>
+		<div id="<%= deal['hotelId'] %>" class="reveal-modal" data-reveal>
+		  <h2><%= deal['name'] %></h2>
+		  Hotel Rating:
+			<% if deal['starRating'] == 5 %>
+				<%= image_tag("rating5_0.png") %>
+			<% elsif deal['starRating'] >= 4.5 %>
+				<%= image_tag("rating4_5.png") %>
+			<% elsif deal['starRating'] >= 4.0 %>
+				<%= image_tag("rating4_0.png") %>
+			<% elsif deal['starRating'] >= 3.5 %>
+				<%= image_tag("rating3_5.png") %>
+			<% elsif deal['starRating'] >= 3.0 %>
+				<%= image_tag("rating3_0.png") %>
+			<% elsif deal['starRating'] >= 2.5 %>
+				<%= image_tag("rating2_5.png") %>
+			<% elsif deal['starRating'] >= 2.0 %>
+				<%= image_tag("rating2_0.png") %>
+			<% elsif deal['starRating'] >= 1.5 %>
+				<%= image_tag("rating1_5.png") %>
+			<% elsif deal['starRating'] >= 1.0 %>
+				<%= image_tag("rating1_0.png") %>
+			<% elsif deal['starRating'] >= 0.5 %>
+				<%= image_tag("rating0_5.png") %>
+			<% else %>
+				<%= image_tag("rating0_0.png") %>
+			<% end %>
+
+
+			User Rating:
+			<% if deal['guestRating'] == 5 %>
+				<%= image_tag("urating5_0.png") %>
+			<% elsif deal['guestRating'] >= 4.5 %>
+				<%= image_tag("urating4_5.png") %>
+			<% elsif deal['guestRating'] >= 4.0 %>
+				<%= image_tag("urating4_0.png") %>
+			<% elsif deal['guestRating'] >= 3.5 %>
+				<%= image_tag("urating3_5.png") %>
+			<% elsif deal['guestRating'] >= 3.0 %>
+				<%= image_tag("urating3_0.png") %>
+			<% elsif deal['guestRating'] >= 2.5 %>
+				<%= image_tag("urating2_5.png") %>
+			<% elsif deal['guestRating'] >= 2.0 %>
+				<%= image_tag("urating2_0.png") %>
+			<% elsif deal['guestRating'] >= 1.5 %>
+				<%= image_tag("urating1_5.png") %>
+			<% elsif deal['guestRating'] >= 1.0 %>
+				<%= image_tag("urating1_0.png") %>
+			<% elsif deal['guestRating'] >= 0.5 %>
+				<%= image_tag("urating0_5.png") %>
+			<% else %>
+				<%= image_tag("urating0_0.png") %>
+			<% end %>
+
+		  <p class="lead"><%= deal['description'].html_safe %></p>
+		  <p class="lead" id="country">Country: <%= deal['country'] %></p>
+		  <p class="lead" id="city">City: <%= deal['city'] %> <%= deal['province'] %></p>
+		  <p class="lead" > </p>
+		  <p class="lead">From <%= deal['checkInDate'] %> to <%= deal['checkOutDate'] %></p>
+		  <p class="lead">Price Per Night: <%= deal['pricePerNight'] %></p>
+		  <% if deal['originalBaseRate'] == deal['baseRate'] %>
+		  	<p class="lead" id="price">Total: <%= deal['baseRate'] %></p>
+		  <% else %>
+		 		<p class="lead" id="price">Total: <strike><%= deal['originalBaseRate'] %></strike> <%= deal['baseRate'] %></p>
+		  <% end %>
+		  <p class="lead"><%= deal['promotionDescription'] %></p>
+		  <%= link_to 'Book', URI.unescape(deal['dealDeepLink']), class: "button"	%>
+
+		  <a class="close-reveal-modal">&#215;</a>
+		</div>
+	<% end %>
+</ul>
