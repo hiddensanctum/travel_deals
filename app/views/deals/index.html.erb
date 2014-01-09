@@ -1,4 +1,26 @@
-<h1>Deals</h1>
+<h1>Get Out Of Town</h1>
+
+<ul class="breadcrumbs">
+  <li class="unavailable">Destination</li>
+  <li><%= link_to "USA", :find => "country=USA"	%></li>
+  <li><%= link_to "Anywhere", '/' %></li>
+</ul>
 <% @deals.each do |deal| %>
-	<img src= <%= deal['imageUrl'] %> ><br><br>
+
+	<a href="#" data-reveal-id="<%= deal['hotelId'] %>"><%= image_tag(deal['imageUrl']) %></a>
+
+	<div id="<%= deal['hotelId'] %>" class="reveal-modal" data-reveal>
+	  <h2><%= deal['name'] %></h2>
+	  <p class="lead"><%= deal['description'] %></p>
+	  <p class="lead">Price Per Night: <%= deal['pricePerNight'] %></p>
+	  <% if deal['originalBaseRate'] == deal['baseRate'] %>
+	  	<p class="lead">Total: <%= deal['baseRate'] %></p>
+	  <% else %>
+	 		<p class="lead">Total: <strike><%= deal['originalBaseRate'] %></strike> <%= deal['baseRate'] %></p>
+	  <% end %>
+	  <p class="lead"><%= deal['promotionDescription'] %></p>
+	  <%= link_to 'Book', URI.unescape(deal['dealDeepLink']), class: "button"	%>
+
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
 <% end %>
