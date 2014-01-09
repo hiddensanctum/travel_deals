@@ -4,6 +4,8 @@ by James Chuang
 
 ## Description
 
+This is a hotel deals app that allows you to randomly pick a hotel package based upon your country, minimum hotel star rating, and maximum amount of money you are willing to spend.
+
 ## Usage
 
 
