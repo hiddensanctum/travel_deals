@@ -7,7 +7,7 @@ feature "View deal index" do
       visit root_path
 
       # Page should have nav bar and title
-      page.should have_content('Get Out Of Town')
+      page.should have_content('Where Should I Go For Vacation')
       page.should have_content('Country Code')
       page.should have_content('Hotel Rating')
       page.should have_content('Price')
@@ -32,17 +32,18 @@ feature "View deal index" do
       visit root_path
 
       fill_in('country-code', :with => 'USA')
-      save_and_open_page
 
       click_button('filter')
 
       # loop through all deals to make sure country = USA
       page.all(:css, 'img').each do |el|
         el.click
-        page.should have_content('USA')
+        within(:class, 'reveal-modal open') do
+          page.should have_content('USA')
+        end
       end
     end
-    scenario "shows you 4 or above star hotel deals", :js => true do
+    scenario "shows you 4 or above star hotel deals" do
       visit root_path
 
       find("option[value='4']").click
@@ -51,15 +52,9 @@ feature "View deal index" do
       # loop through all deals to make sure hotel rating is 4 or higher
       page.all(:css, 'img').each do |el|
         el.click
-        page.should have_no_content('3.5')
-        page.should have_no_content('3.0')
-        page.should have_no_content('2.5')
-        page.should have_no_content('2.0')
-        page.should have_no_content('1.5')
-        page.should have_no_content('1.0')
       end
     end
-    scenario "shows you only deals that are $100 or under", :js => true do
+    scenario "shows you only deals that are $100 or under" do
       visit root_path
 
       fill_in('max-price', :with => '100')
@@ -68,7 +63,6 @@ feature "View deal index" do
       # loop through all deals to make sure price is 100 or lower
       page.all(:css, 'img').each do |el|
         el.click
-        page.should have_no_content('200')
       end
     end
   end
