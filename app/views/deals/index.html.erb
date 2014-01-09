@@ -40,6 +40,7 @@
 		  <p class="lead" id="country">Country: <%= deal['country'] %></p>
 		  <p class="lead" id="star">City: <%= deal['city'] %> <%= deal['province'] %></p>
 		  <p class="lead" id="star">Hotel Rating: <%= deal['starRating'] %></p>
+		  <p class="lead">From <%= deal['checkInDate'] %> to <%= deal['checkOutDate'] %></p>
 		  <p class="lead">Price Per Night: <%= deal['pricePerNight'] %></p>
 		  <% if deal['originalBaseRate'] == deal['baseRate'] %>
 		  	<p class="lead" id="price">Total: <%= deal['baseRate'] %></p>
