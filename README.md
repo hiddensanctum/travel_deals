@@ -35,6 +35,7 @@ rails server
 ## Known Issues
 * Form Validation is sparse
 * HTML5 Date Form Does not work on Firefox (becomes a regular input form) due to Firefox not yet supporting this feature
+* Travis CI will past build only if Selenium specs are disabled, currently selenium specs are commented out
 
 ## Authors
 
