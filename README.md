@@ -40,9 +40,9 @@ rails server
 9) open up your browser and go to localhost:3000
 
 ## Assumptions
-* target audience is someone who is unsure of where they want to go on vacation, but want to base their decision off what the hottest hotel deals are at the moment
+* target audience is someone who is unsure of where they want to go on vacation, but want to base their decision off of what the hottest hotel deals are at the moment
 * target audience can read and type in english
-* target audience has access to the internet whether it be through a mobile device or computer
+* target audience has access to the internet, whether it be through a mobile device or computer
 
 ## Known Issues
 * Form validations are sparse. Currently the app does not check for invalid input. However, invalid input does not break the app either. It will just notify the user that there are no deals within the search criteria they specified
