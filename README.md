@@ -52,6 +52,7 @@ rails server
 * HTML5 Date Form Does not work on Firefox (becomes a regular input form) due to that fact that Firefox does not supporting this feature at the moment
 * Travis CI will only pass if Selenium tests are disabled, currently selenium test are commented out but are working locally
 * Forms do not handle misspelling
+* Forms do not persist through searches
 
 ## Authors
 
