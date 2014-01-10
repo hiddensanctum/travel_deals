@@ -1,5 +1,6 @@
 # Where Should I Go For Vacation
 [![Build Status](https://travis-ci.org/hiddensanctum/travel_deals.png?branch=master)](https://travis-ci.org/hiddensanctum/travel_deals)
+
 Click here for [Demo][4]
 
 by James Chuang
