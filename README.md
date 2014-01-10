@@ -1,5 +1,6 @@
 # Where Should I Go For Vacation
 [![Build Status](https://travis-ci.org/hiddensanctum/travel_deals.png?branch=master)](https://travis-ci.org/hiddensanctum/travel_deals)
+Click here for [Demo][4]
 
 by James Chuang
 
@@ -68,4 +69,4 @@ rails server
 [1]: http://www.rubyinside.com/rbenv-a-simple-new-ruby-version-management-tool-5302.html
 [2]: http://opensource.org/licenses/MIT
 [3]: https://rvm.io/rvm/install
-
+[4]: http://where-2-go.herokuapp.com/
