@@ -5,32 +5,32 @@
   </div>
   <div class="row">
     <label>Country Code</label>
-    <input type="text" id="country-code" placeholder="USA, CAN, THA, RUS...etc" autofocus maxlength="3" pattern="[a-zA-Z]+">
+    <input type="text" id="country-code" placeholder="USA, CAN, THA, RUS...etc" autofocus maxlength="3" pattern="[A-Z][A-Z][A-Z]">
     <small class="error">Country Code is Invalid</small>
   </div>
   <div class="row">
     <label>State/Province</label>
-    <input type="text" id="province" placeholder="NY, MD, WA, CA...etc" maxlength="3" pattern="[a-zA-Z]+">
+    <input type="text" id="province" placeholder="NY, MD, WA, CA...etc" maxlength="2" pattern="[A-Z][A-Z]">
     <small class="error">State or Province is Invalid</small>
   </div>
   <div class="row">
     <label>City</label>
-    <input type="text" id="city" placeholder="New York, Toronto...etc" pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$">
+    <input type="text" id="city" placeholder="New York, Toronto...etc" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$">
     <small class="error">City is Invalid</small>
   </div>
   <div class="row">
   	<label>Check-in Date</label>
-  	<input type="date" id="checkin" placeholder="2014-01-01" pattern="/([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))/">
+  	<input type="date" id="checkin" placeholder="2014-01-01" pattern="datetime">
     <small class="error">Date is Invalid</small>
   </div>
   <div class="row">
     <label>Length of Stay (Days)</label>
-    <input type="number" id="days" placeholder="3" min=1 pattern="/-?\d+/">
+    <input type="text" id="days" placeholder="3" min=1 pattern="^[1-9]\d*$">
     <small class="error">Length of stay is Invalid</small>
   </div>
   <div class="row">
     <label>Max Price</label>
-    <input type="number" id="max-price" placeholder="USD" min=1 pattern="/-?\d+/">
+    <input type="text" id="max-price" placeholder="USD" min=1 pattern="^[1-9]\d*$">
     <small class="error">Price has to be an integer</small>
   </div>
   <div class="row">
@@ -43,6 +43,8 @@
   		<option name="minStarRating" value="5" id="Five Star"><label for="Five Star">Five Star</option>
      </select>
   </div>
+</form>
+<div class="row text-center">
   <button id="submit">filter</button>
   <%= link_to 'reset', '/', :class => 'button' %>
-</form>
+</div>
