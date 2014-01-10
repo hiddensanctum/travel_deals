@@ -29,7 +29,7 @@
 			<% else %>
 				<%= image_tag("urating0_0.png") %>
 			<% end %>
-			<h5><%= deal['city'] %> <%= deal['province'] %></h5>
+			<h5 id="location"><%= deal['city'] %> <%= deal['province'] %></h5>
 			<h5>For <%= deal['lengthofStay'] %> days</h5>
 			<h6>Price: <%= deal['baseRate'] %></h6>
 		</li>
@@ -59,7 +59,6 @@
 			<% else %>
 				<%= image_tag("rating0_0.png") %>
 			<% end %>
-
 
 			User Rating:
 			<% if deal['guestRating'] == 5 %>
