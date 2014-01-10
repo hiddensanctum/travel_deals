@@ -5,7 +5,7 @@ by James Chuang
 
 ## Description
 
-This is a hotel deals app that gives you the 50 of the best deals that are currently happening. By default it will give you the deals that are a month away from the current date. It will also sort them by the greatest savings. You can use the customize my trip bar to limit what type of deals you want to see. All of the fields are optional and can be used together.
+This is a hotel deals app that gives you the 50 of the best deals that are currently avaliable from Expedia. The idea is that you are someone that is looking to go on vacation but is not sure where you want to go. Or you may be someone who is looking for an adventure and likes some uncertainty. This app allows you to select certain criteria and give you the best hotel deals. By default the app will give you the deals that are a month away from the current date. It will also sort the 50 deals based upon the greater savings. You can use the customize my trip bar to limit what type of deals you want to see. All of the fields are optional and can be used together.
 
 ## Usage
 ### Setting up a local sandbox
