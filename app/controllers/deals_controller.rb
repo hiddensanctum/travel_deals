@@ -2,6 +2,7 @@ class DealsController < ApplicationController
 
 	def index
 		@deals = get_deals(params[:options]).sort_by { |deal| deal['promotionAmount'] }.reverse
+
 		if @deals == []
 			@date = 'N/A'
 		else
