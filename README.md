@@ -46,6 +46,7 @@ rails server
 * Can read and type in english
 * Has access to the internet, whether it be through a mobile device or computer
 * Knows the country code of where they want to go
+* Deals are all shown in USD
 
 ## Known Issues
 * Form validations are sparse. Currently the app does not check for invalid input. However, invalid input does not break the app either. It will just notify the user that there are no deals within the search criteria they specified
