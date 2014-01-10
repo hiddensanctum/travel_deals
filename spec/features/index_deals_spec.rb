@@ -83,19 +83,30 @@ feature "View deal index" do
         page.should have_no_content('For 3 days')
       end
 
-      # scenario "shows you only deals that are from Canada", :js => true do
-      #   visit root_path
-      #   fill_in('country-code', :with => 'CAN')
-      #   click_button('filter')
+      scenario "shows you only deals that are from Canada", :js => true do
+        visit root_path
 
-      #   page.all(:css, 'img').each do |el|
-      #     el.click
+        fill_in('country-code', :with => 'CAN')
+        fill_in('province', :with => 'ON')
+        fill_in('city', :with => 'Toronto')
+        fill_in('checkin', :with => '2014-02-19')
+        fill_in('days', :with => '2')
+        fill_in('max-price', :with => '200')
 
-      #     within(:xpath, '//*[@id="country"]') do
-      #       page.should have_content('CAN')
-      #     end
-      #   end
-      # end
+        click_button('filter')
+
+        page.should have_content('For 2 days')
+        page.should have_content('Check-in Date: 2014-02-19')
+
+        page.all(:css, 'img').each do |el|
+          el.click
+          page.should have_content('Toronto')
+          page.should have_content('ON')
+          within(:xpath, '//*[@id="country"]') do
+            page.should have_content('CAN')
+          end
+        end
+      end
     end
     context "with invalid input" do
 
@@ -107,8 +118,8 @@ feature "View deal index" do
         page.should have_no_content('Check-in Date: 2014-02-09')
       end
 
-      scenario "enter wrong info like Toronto, NY" do
-        visit (root_path.to_s + "/?options=city%3DToronto%3Dprovince%3DNY")
+      scenario "enter wrong info like -1 day" do
+        visit (root_path.to_s + "/?options=lengthofStay%3D-1")
 
         page.should have_content('No Deals Found')
         page.should have_content('Check-in Date: N/A')
