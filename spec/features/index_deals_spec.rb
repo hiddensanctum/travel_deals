@@ -28,7 +28,7 @@ feature "View deal index" do
       end
     end
 
-    scenario "shows you only US deals", :js => true do
+    scenario "shows you only US deals" do
       visit root_path
 
       fill_in('country-code', :with => 'USA')
