@@ -43,13 +43,15 @@ rails server
 
 ## Assumptions
 * target audience is someone who is unsure of where they want to go on vacation, but want to base their decision off of what the hottest hotel deals are at the moment
-* target audience can read and type in english
-* target audience has access to the internet, whether it be through a mobile device or computer
+* Can read and type in english
+* Has access to the internet, whether it be through a mobile device or computer
+* Knows the country code of where they want to go
 
 ## Known Issues
 * Form validations are sparse. Currently the app does not check for invalid input. However, invalid input does not break the app either. It will just notify the user that there are no deals within the search criteria they specified
 * HTML5 Date Form Does not work on Firefox (becomes a regular input form) due to that fact that Firefox does not supporting this feature at the moment
 * Travis CI will only pass if Selenium tests are disabled, currently selenium test are commented out but are working locally
+* Forms do not handle misspelling
 
 ## Authors
 
