@@ -3,55 +3,120 @@ require 'spec_helper'
 feature "View deal index" do
 
   context "as a vistor" do
-    scenario "shows you hotel deals" do
-      visit root_path
+    context "with valid input" do
+      scenario "shows you hotel deals" do
+        visit root_path
 
-      # Page should have nav bar and title
-      page.should have_content('Where Should I Go For Vacation')
-      page.should have_content('Country Code')
-      page.should have_content('Hotel Rating')
-      page.should have_content('Price')
+        # Page should have nav bar and title
+        page.should have_content('Where Should I Go For Vacation')
+        page.should have_content('Country Code')
+        page.should have_content('Hotel Rating')
+        page.should have_content('Price')
 
-      # Page should have deals
-      page.should have_content('Total')
-      page.should have_content('Price Per Night')
-      page.should have_content('Book')
-    end
-
-    scenario "shows you button to go to expdia's site to book hotel" do
-      visit root_path
-
-      # Within one of the modals
-      within(:xpath, '//*[@id="1213446"]') do
+        # Page should have deals
+        page.should have_content('Total')
+        page.should have_content('Price Per Night')
         page.should have_content('Book')
-        find_link('Book').visible?
       end
-    end
 
-    scenario "shows you only US deals" do
-      visit (root_path.to_s + "/?options=country%3DUSA")
+      scenario "shows you button to go to expdia's site to book hotel" do
+        visit root_path
 
-      page.all(:xpath, '//*[@id="country"]').each do |el|
-        el.should have_content('USA')
+        within(:xpath, '//*[@id="1213446"]') do
+          page.should have_content('Book')
+          find_link('Book').visible?
+        end
       end
-    end
-    scenario "shows you 5 or above star hotel deals" do
-      visit (root_path.to_s + "/?options=minStarRating%3D5")
 
-      # loop through all deals to make sure hotel rating is 5
-      page.all(:xpath, '//*[@id="star"]').each do |el|
-        el.should have_css("Rating5_0.png")
+      scenario "shows you only US deals" do
+        visit (root_path.to_s + "/?options=country%3DUSA")
+
+        page.all(:xpath, '//*[@id="country"]').each do |el|
+          el.should have_content('USA')
+        end
       end
-    end
-    scenario "shows you only deals that are $100 or under" do
-      visit (root_path.to_s + "/?options=maxTotalRate%3D100")
 
-      page.should have_content('40.53')
-    end
-    scenario "shows you only deals that are on 2014-02-20" do
-      visit (root_path.to_s + "/?options=checkInDate%3D2014-02-20")
+      scenario "shows you 5 or above star hotel deals" do
+        visit (root_path.to_s + "/?options=minStarRating%3D5")
 
-      page.should have_content('2014-02-20')
+        # loop through all deals to make sure hotel rating is 5
+        page.all(:xpath, '//*[@id="star"]').each do |el|
+          el.should have_css("Rating5_0.png")
+        end
+      end
+
+      scenario "shows you only deals that are $100 or under" do
+        visit (root_path.to_s + "/?options=maxTotalRate%3D100")
+
+        page.should have_content('40.53')
+      end
+
+      scenario "shows you only deals that are on 2014-02-20" do
+        visit (root_path.to_s + "/?options=checkInDate%3D2014-02-20")
+
+        page.should have_content('2014-02-20')
+        page.should have_no_content('N/A')
+      end
+
+      scenario "shows you only deals in NY State" do
+        visit (root_path.to_s + "/?options=province%3DNY")
+
+        # loop through all deals to make sure state is NY
+        page.all(:xpath, '//*[@id="location"]').each do |el|
+          el.should have_content('NY')
+        end
+      end
+
+      scenario "shows you only deals in Toronto" do
+        visit (root_path.to_s + "/?options=city%3DToronto")
+
+        # loop through all deals to make sure city is Toronto
+        page.all(:xpath, '//*[@id="location"]').each do |el|
+          el.should have_content('Toronto')
+        end
+      end
+
+      # scenario "shows you only deals that are from Canada", :js => true do
+      #   visit root_path
+      #   fill_in('country-code', :with => 'CAN')
+      #   click_button('filter')
+
+      #   page.all(:css, 'img').each do |el|
+      #     el.click
+
+      #     within(:xpath, '//*[@id="country"]') do
+      #       page.should have_content('CAN')
+      #     end
+      #   end
+      # end
+    end
+    context "with invalid input" do
+
+      scenario "enter wrong info like Toronto, NY" do
+        visit (root_path.to_s + "/?options=city%3DToronto%3Dprovince%3DNY")
+
+        page.should have_content('No Deals Found')
+        page.should have_content('Check-in Date: N/A')
+        page.should have_no_content('Check-in Date: 2014-02-09')
+      end
+
+      scenario "enter wrong info like Toronto, NY" do
+        visit (root_path.to_s + "/?options=city%3DToronto%3Dprovince%3DNY")
+
+        page.should have_content('No Deals Found')
+        page.should have_content('Check-in Date: N/A')
+        page.should have_no_content('Check-in Date: 2014-02-09')
+      end
+
+      # scenario "enters invalid country code", :js => true do
+      #   visit root_path
+      #   fill_in('country-code', :with => 'LLL')
+      #   click_button('filter')
+
+      #   page.should have_content('No Deals Found')
+      #   page.should have_content('Check-in Date: N/A')
+      #   page.should have_no_content('Check-in Date: 2014-02-09')
+      # end
     end
   end
 end
