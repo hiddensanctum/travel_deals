@@ -11,10 +11,14 @@ This is a hotel deals app that gives you the 50 of the best deals that are curre
 ### Setting up a local sandbox
 1) Download the repository
 
-2) Make sure you have both Ruby 2.0.0 and Rails 4.0.1 installed
+2) Make sure you have both Ruby 2.0.0, Rails 4.0.1, and SQLite installed
+
+if not check out [rvm][3] or [rbenv][1]
 
 3) navigate to the repository folder that you have downloaded in the terminal
-
+```ruby
+cd $FILE_LOCATION
+```
 4) bundle install all the gems by typing
 ```ruby
 bundle install
@@ -61,4 +65,7 @@ rails server
 
 [MIT][2]
 
+[1]: http://www.rubyinside.com/rbenv-a-simple-new-ruby-version-management-tool-5302.html
 [2]: http://opensource.org/licenses/MIT
+[3]: https://rvm.io/rvm/install
+
