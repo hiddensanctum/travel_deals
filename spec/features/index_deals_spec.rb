@@ -29,41 +29,29 @@ feature "View deal index" do
     end
 
     scenario "shows you only US deals" do
-      visit root_path
+      visit (root_path.to_s + "/?options=country%3DUSA")
 
-      fill_in('country-code', :with => 'USA')
-
-      click_button('filter')
-
-      # loop through all deals to make sure country = USA
-      page.all(:css, 'img').each do |el|
-        el.click
-        # within(:xpath, '//*[@id="country"]') do
-        #   page.should have_content('USA')
-        # end
+      page.all(:xpath, '//*[@id="country"]').each do |el|
+        el.should have_content('USA')
       end
     end
     scenario "shows you 5 or above star hotel deals" do
-      visit root_path
+      visit (root_path.to_s + "/?options=minStarRating%3D5")
 
-      find("option[value='5']").click
-      click_button('filter')
-
-      # loop through all deals to make sure hotel rating is 4 or higher
-      page.all(:css, 'img').each do |el|
-        el.click
+      # loop through all deals to make sure hotel rating is 5
+      page.all(:xpath, '//*[@id="star"]').each do |el|
+        el.should have_css("Rating5_0.png")
       end
     end
     scenario "shows you only deals that are $100 or under" do
-      visit root_path
+      visit (root_path.to_s + "/?options=maxTotalRate%3D100")
 
-      fill_in('max-price', :with => '100')
-      click_button('filter')
+      page.should have_content('40.53')
+    end
+    scenario "shows you only deals that are on 2014-02-20" do
+      visit (root_path.to_s + "/?options=checkInDate%3D2014-02-20")
 
-      # loop through all deals to make sure price is 100 or lower
-      page.all(:css, 'img').each do |el|
-        el.click
-      end
+      page.should have_content('2014-02-20')
     end
   end
 end
