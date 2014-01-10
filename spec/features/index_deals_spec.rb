@@ -76,6 +76,13 @@ feature "View deal index" do
         end
       end
 
+      scenario "shows you only deals that are for 5 days" do
+        visit (root_path.to_s + "/?options=lengthofStay%3D5")
+
+        page.should have_content('For 5 days')
+        page.should have_no_content('For 3 days')
+      end
+
       # scenario "shows you only deals that are from Canada", :js => true do
       #   visit root_path
       #   fill_in('country-code', :with => 'CAN')
