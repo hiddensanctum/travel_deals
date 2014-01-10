@@ -4,9 +4,11 @@
   	<h6 class="subheader">(Optional)</h6>
   </div>
   <div class="row">
-    <label>Country Code</label>
-    <input type="text" id="country-code" placeholder="USA, CAN, THA, RUS...etc" autofocus maxlength="3" pattern="[A-Z][A-Z][A-Z]">
-    <small class="error">Country Code is Invalid</small>
+    <span data-tooltip class="has-tip" title="click here for a list of 3 letter country codes">
+      <label><%= link_to '3 Letter Country Code', 'http://www.worldatlas.com/aatlas/ctycodes.htm' %></label>
+    </span>
+      <input type="text" id="country-code" placeholder="USA, CAN, THA, RUS...etc" autofocus maxlength="3" pattern="[A-Z][A-Z][A-Z]">
+      <small class="error">Country Code is Invalid</small>
   </div>
   <div class="row">
     <label>State/Province</label>
